@@ -21,7 +21,7 @@ public class ExampleTest {
 
     @Test
     public void listAvaliableBooksTest() {
-        assertEquals("1. book 1\n2. book 2\n3. book 3", biblioteca.listAvaliableBooks());
+        assertEquals("------------------------------\nbook 1\nbook 2\nbook 3\n", biblioteca.listAvaliableBooks());
     }
 
 

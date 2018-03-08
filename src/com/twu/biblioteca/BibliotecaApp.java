@@ -1,7 +1,9 @@
 package com.twu.biblioteca;
 
-public class BibliotecaApp {
+import com.twu.biblioteca.controller.BookController;
 
+public class BibliotecaApp {
+    BookController bookController = new BookController();
     public static void main(String[] args) {
         System.out.println("Hello, world!");
     }
@@ -11,11 +13,9 @@ public class BibliotecaApp {
     }
 
     public String listAvaliableBooks() {
-        return generateLines() + books.listAvaliableBooks();
+        return bookController.listAvaliableBooks();
     }
 
-    private String generateLines(){
-        return "------------------------------\n";
-    }
+
 
 }
