@@ -11,17 +11,22 @@ public class BookController {
         StringBuffer availableBooks = new StringBuffer();
         generatePreExistingListofBooks();
         for(Book book : books){
-            if(book.isAvailable()) availableBooks.append(getBookDetails(book));
+             availableBooks.append(getBookDetails(book));
         }
         return generateHead() + availableBooks.toString();
     }
 
     private String generateHead(){
         StringBuffer head = new StringBuffer();
-        head.append("Title       |Author       | Publishing Year\n");
+        head.append(printColumns());
         head.append("------------------------------\n");
         return head.toString();
     }
+
+    private String printColumns() {
+        return "Title       |Author       | Publishing Year\n";
+    }
+
     private String getBookDetails(Book book){
         return String.format("%s     |%s      |%s%n", book.getTitle(), book.getAuthor(), book.getPublishing_year());
     }

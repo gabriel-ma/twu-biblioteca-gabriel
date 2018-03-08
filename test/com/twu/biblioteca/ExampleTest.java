@@ -4,10 +4,12 @@ package com.twu.biblioteca;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class ExampleTest {
     BibliotecaApp biblioteca;
+
     @Before
     public void setUp() {
         biblioteca = new BibliotecaApp();
@@ -15,8 +17,11 @@ public class ExampleTest {
 
     @Test
     public void printWelcomeMessageTest() {
+        String expectedWelcomeMessage = "Welcome to Biblioteca";
 
-        Assert.assertEquals("Welcome to Biblioteca", biblioteca.printWelcomeMessage());
+        String receivedMessage = biblioteca.printWelcomeMessage();
+
+        Assert.assertEquals(expectedWelcomeMessage, receivedMessage);
     }
 
     @Test
@@ -28,8 +33,13 @@ public class ExampleTest {
         detailedBooksList.append("book 2     |Author2      |1948\n");
         detailedBooksList.append("book 3     |Author3      |2008\n");
 
-        assertEquals(detailedBooksList.toString(), biblioteca.listAvaliableBooks());
+        String expectedResult = biblioteca.listAvaliableBooks();
+
+        assertEquals(detailedBooksList.toString(), expectedResult);
     }
 
-
+    @Test
+    public void printMainMenuTest() {
+        assertEquals("1. List available books", biblioteca.printMainMenu());
+    }
 }

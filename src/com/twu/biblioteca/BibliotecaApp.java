@@ -16,6 +16,18 @@ public class BibliotecaApp {
         return bookController.listAvaliableBooks();
     }
 
+    public String printMainMenu(){
+        StringBuffer mainMenu = new StringBuffer();
+        mainMenu.append("1. List available books");
+        return mainMenu.toString();
+    }
 
+    public void startBibliotecaApp(){
+        printWelcomeMessage();
+        printMainMenu();
+    }
 
+    private void selectCostumerOption(){
+
+    }
 }
