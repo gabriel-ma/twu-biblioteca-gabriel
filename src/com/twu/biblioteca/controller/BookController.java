@@ -17,7 +17,7 @@ public class BookController {
     }
 
     private String generateLines(){
-        return "------------------------------\n";
+        return "-----------  -------------------\n";
     }
 
 
