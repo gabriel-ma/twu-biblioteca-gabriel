@@ -11,19 +11,25 @@ public class BookController {
         StringBuffer availableBooks = new StringBuffer();
         generatePreExistingListofBooks();
         for(Book book : books){
-            if(book.isAvailable()) availableBooks.append(book.getTitle() + "\n");
+            if(book.isAvailable()) availableBooks.append(getBookDetails(book));
         }
-        return generateLines() + availableBooks.toString();
+        return generateHead() + availableBooks.toString();
     }
 
-    private String generateLines(){
-        return "-----------  -------------------\n";
+    private String generateHead(){
+        StringBuffer head = new StringBuffer();
+        head.append("Title       |Author       | Publishing Year\n");
+        head.append("------------------------------\n");
+        return head.toString();
     }
-
-
+    private String getBookDetails(Book book){
+        return String.format("%s     |%s      |%s%n", book.getTitle(), book.getAuthor(), book.getPublishing_year());
+    }
     private void generatePreExistingListofBooks(){
-        books.add(new Book(true, "book 1"));
-        books.add(new Book(true, "book 2"));
-        books.add(new Book(true, "book 3"));
+        books.add(new Book(true, "book 1", "Author1", 1996));
+        books.add(new Book(true, "book 2", "Author2", 1948));
+        books.add(new Book(true, "book 3", "Author3", 2008));
     }
+
+
 }

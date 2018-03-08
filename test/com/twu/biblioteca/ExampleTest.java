@@ -21,7 +21,14 @@ public class ExampleTest {
 
     @Test
     public void listAvaliableBooksTest() {
-        assertEquals("------------------------------\nbook 1\nbook 2\nbook 3\n", biblioteca.listAvaliableBooks());
+        StringBuffer detailedBooksList = new StringBuffer();
+        detailedBooksList.append("Title       |Author       | Publishing Year\n");
+        detailedBooksList.append("------------------------------\n");
+        detailedBooksList.append("book 1     |Author1      |1996\n");
+        detailedBooksList.append("book 2     |Author2      |1948\n");
+        detailedBooksList.append("book 3     |Author3      |2008\n");
+
+        assertEquals(detailedBooksList.toString(), biblioteca.listAvaliableBooks());
     }
 
 
