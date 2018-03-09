@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
     static BookController bookController = new BookController();
-    static Scanner sc;
+    static Scanner sc = new Scanner(System.in);;
     private boolean flagQuit;
     public static void main(String[] args) {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
@@ -24,19 +24,26 @@ public class BibliotecaApp {
 
     public String printMainMenu(){
         StringBuffer mainMenu = new StringBuffer();
-        mainMenu.append("1. List books");
-        mainMenu.append("4. Quit");
+        mainMenu.append("1. List books\n");
+        mainMenu.append("2. Checkout book\n");
+        mainMenu.append("4. Quit\n");
         return mainMenu.toString();
     }
 
-    public String checkOutBook(int bookId){
+    public String checkOutBook(){
+        System.out.println("Select your book");
+        System.out.println(listAvaliableBooks());
+        return bookController.checkoutBook(getOption());
+    }
 
-        return bookController.checkoutBook(bookId);
+    public String returnBook(int bookId){
+
+        return bookController.returnBook(bookId);
     }
 
     public void startBibliotecaApp(){
 
-        sc = new Scanner(System.in);
+
         flagQuit = false;
 
         System.out.println(printWelcomeMessage());
@@ -46,14 +53,22 @@ public class BibliotecaApp {
         }
     }
 
+    private int getOption(){
+        return sc.nextInt();
+    }
+
     private void selectCostumerOption(){
-        int costumerOption = sc.nextInt();
+        int costumerOption = getOption();
         switch (costumerOption){
             case 1:
                 System.out.println(listAvaliableBooks());
                  break;
+            case 2:
+                System.out.println(checkOutBook());
+                break;
             case 4:
                 setFlagQuit(true);
+                break;
             default:
                 System.out.println(invalidOptionMessage());
 

@@ -24,8 +24,16 @@ public class BookController {
         Book bookToCheckout = books.stream()
                 .filter(b -> b.getBookId() == bookId && b.isAvailable())
                 .findFirst().orElse(new Book(false));
-        
-        return bookToCheckout.isAvailable() ?  sucessfullCheckOutMessage() : unsucessfulCheckOutMessage();
+
+        return bookToCheckout.isAvailable() ?  checkoutBook(bookToCheckout) : unsucessfulCheckOutMessage();
+    }
+    public String returnBook(int bookId){
+        Book returnedBook = books.stream()
+                .filter(b -> b.getBookId() == bookId && !b.isAvailable())
+                .findFirst().orElse(new Book(true));
+
+        return !returnedBook.isAvailable() ?  returntBook(returnedBook) : unsucessfulReturnMessage();
+
     }
     private String generateHead(){
         StringBuffer head = new StringBuffer();
@@ -44,13 +52,26 @@ public class BookController {
         books.add(new Book(2,false, "book 2", "Author2", 1948));
         books.add(new Book(3,true, "book 3", "Author3", 2008));
     }
-
+    private String checkoutBook(Book book){
+        book.setAvailable(false);
+        return sucessfullCheckOutMessage();
+    }
+    private String returntBook(Book book){
+        book.setAvailable(true);
+        return sucessfullReturnMessage();
+    }
     private String sucessfullCheckOutMessage(){
         return "Thank you! Enjoy the book";
+    }
+    private String sucessfullReturnMessage(){
+        return "Thank you for returning the book.";
     }
 
     private  String unsucessfulCheckOutMessage(){
         return "That book is not available.";
+    }
+    private  String unsucessfulReturnMessage(){
+        return "That is not a valid book to return.";
     }
 
 }

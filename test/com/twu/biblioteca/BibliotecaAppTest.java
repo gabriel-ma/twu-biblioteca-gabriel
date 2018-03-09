@@ -52,7 +52,7 @@ public class BibliotecaAppTest {
     public void sucessfulCheckoutBookTest(){
         String expectedMessage = "Thank you! Enjoy the book";
 
-        String receivedMessage = biblioteca.checkOutBook(1);
+        String receivedMessage = biblioteca.checkOutBook();
 
         assertEquals(expectedMessage, receivedMessage);
     }
@@ -61,7 +61,40 @@ public class BibliotecaAppTest {
     public void unsucessfulCheckoutBookTest() {
         String expectedMessage = "That book is not available.";
 
-        String receivedMessage = biblioteca.checkOutBook(2);
+        String receivedMessage = biblioteca.checkOutBook();
+
+        assertEquals(expectedMessage, receivedMessage);
+    }
+
+    @Test
+    public void returnBookTest() {
+        StringBuffer detailedBooksList = new StringBuffer();
+        detailedBooksList.append("Title       |Author       | Publishing Year\n");
+        detailedBooksList.append("------------------------------\n");
+        detailedBooksList.append("book 1     |Author1      |1996\n");
+        detailedBooksList.append("book 2     |Author2      |1948\n");
+        detailedBooksList.append("book 3     |Author3      |2008\n");
+        biblioteca.returnBook(2);
+        String expectedResult = biblioteca.listAvaliableBooks();
+
+        assertEquals(detailedBooksList.toString(), expectedResult);
+
+    }
+
+    @Test
+    public void returnBookSucesfulMessage() {
+        String expectedMessage = "Thank you for returning the book.";
+
+        String receivedMessage = biblioteca.returnBook(2);
+
+        assertEquals(expectedMessage, receivedMessage);
+    }
+
+    @Test
+    public void returnBookUnsucessfulMessage() {
+        String expectedMessage = "That is not a valid book to return.";
+
+        String receivedMessage = biblioteca.returnBook(1);
 
         assertEquals(expectedMessage, receivedMessage);
     }
