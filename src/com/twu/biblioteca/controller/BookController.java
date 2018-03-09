@@ -13,12 +13,20 @@ public class BookController {
 
     public String listAvaliableBooks(){
         StringBuffer availableBooks = new StringBuffer();
+
         for(Book book : books){
-             availableBooks.append(book.getBookDetails());
+            if(book.isAvailable())
+                availableBooks.append(book.getBookDetails());
         }
         return generateHead() + availableBooks.toString();
     }
-
+    public String checkoutBook(int bookId){
+        Book bookToCheckout = books.stream()
+                .filter(b -> b.getBookId() == bookId && b.isAvailable())
+                .findFirst().orElse(new Book(false));
+        
+        return bookToCheckout.isAvailable() ?  sucessfullCheckOutMessage() : unsucessfulCheckOutMessage();
+    }
     private String generateHead(){
         StringBuffer head = new StringBuffer();
         head.append(printColumns());
@@ -31,11 +39,18 @@ public class BookController {
     }
 
 
-    public void generatePreExistingListofBooks(){
-        books.add(new Book(true, "book 1", "Author1", 1996));
-        books.add(new Book(true, "book 2", "Author2", 1948));
-        books.add(new Book(true, "book 3", "Author3", 2008));
+    private void generatePreExistingListofBooks(){
+        books.add(new Book(1,true, "book 1", "Author1", 1996));
+        books.add(new Book(2,false, "book 2", "Author2", 1948));
+        books.add(new Book(3,true, "book 3", "Author3", 2008));
     }
 
+    private String sucessfullCheckOutMessage(){
+        return "Thank you! Enjoy the book";
+    }
+
+    private  String unsucessfulCheckOutMessage(){
+        return "That book is not available.";
+    }
 
 }

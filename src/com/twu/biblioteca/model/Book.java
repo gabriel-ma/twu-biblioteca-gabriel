@@ -1,17 +1,28 @@
 package com.twu.biblioteca.model;
 
 public class Book {
+
+
     private boolean available;
     private String title, author;
-    private int publishing_year;
+    private int bookId, publishing_year;
 
 
 
-    public Book(boolean available, String title, String author, int publishing_year) {
+    public Book(int bookId, boolean available, String title, String author, int publishing_year) {
         this.available = available;
         this.title = title;
         this.author = author;
         this.publishing_year = publishing_year;
+        this.bookId = bookId;
+    }
+
+    public Book(boolean available) {
+        this.available = available;
+    }
+
+    public int getBookId() {
+        return bookId;
     }
 
     public String getTitle() {
@@ -25,7 +36,9 @@ public class Book {
 
         return author;
     }
-
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
     public boolean isAvailable() {
         return available;
     }
