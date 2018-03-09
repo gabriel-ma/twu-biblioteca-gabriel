@@ -29,5 +29,7 @@ public class Book {
     public boolean isAvailable() {
         return available;
     }
-
+    public  String getBookDetails(){
+        return String.format("%s     |%s      |%s%n", this.getTitle(), this.getAuthor(), this.getPublishing_year());
+    }
 }

@@ -2,10 +2,15 @@ package com.twu.biblioteca;
 
 import com.twu.biblioteca.controller.BookController;
 
+import java.util.Scanner;
+
 public class BibliotecaApp {
-    BookController bookController = new BookController();
+    BookController bookController;
+    static Scanner sc;
+    private boolean flagQuit;
     public static void main(String[] args) {
-        System.out.println("Hello, world!");
+        BibliotecaApp bibliotecaApp = new BibliotecaApp();
+        bibliotecaApp.startBibliotecaApp();
     }
 
     public String printWelcomeMessage() {
@@ -23,11 +28,24 @@ public class BibliotecaApp {
     }
 
     public void startBibliotecaApp(){
-        printWelcomeMessage();
-        printMainMenu();
+        bookController = new BookController();
+        sc = new Scanner(System.in);
+        flagQuit = false;
+
+        System.out.println(printWelcomeMessage());
+        while(!flagQuit) {
+            System.out.println(printMainMenu());
+            selectCostumerOption();
+        }
     }
 
     private void selectCostumerOption(){
+        int costumerOption = sc.nextInt();
+        switch (costumerOption){
+            case 1:
+                System.out.println(listAvaliableBooks());
+        }
 
     }
+
 }

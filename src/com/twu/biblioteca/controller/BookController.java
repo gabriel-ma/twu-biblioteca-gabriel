@@ -7,11 +7,14 @@ import java.util.ArrayList;
 public class BookController {
     ArrayList<Book> books = new ArrayList<Book>();
 
+    public BookController() {
+        generatePreExistingListofBooks();
+    }
+
     public String listAvaliableBooks(){
         StringBuffer availableBooks = new StringBuffer();
-        generatePreExistingListofBooks();
         for(Book book : books){
-             availableBooks.append(getBookDetails(book));
+             availableBooks.append(book.getBookDetails());
         }
         return generateHead() + availableBooks.toString();
     }
@@ -27,10 +30,8 @@ public class BookController {
         return "Title       |Author       | Publishing Year\n";
     }
 
-    private String getBookDetails(Book book){
-        return String.format("%s     |%s      |%s%n", book.getTitle(), book.getAuthor(), book.getPublishing_year());
-    }
-    private void generatePreExistingListofBooks(){
+
+    public void generatePreExistingListofBooks(){
         books.add(new Book(true, "book 1", "Author1", 1996));
         books.add(new Book(true, "book 2", "Author2", 1948));
         books.add(new Book(true, "book 3", "Author3", 2008));
