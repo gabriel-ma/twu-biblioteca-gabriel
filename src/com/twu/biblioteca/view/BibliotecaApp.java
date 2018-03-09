@@ -1,4 +1,4 @@
-package com.twu.biblioteca;
+package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.BookController;
 
@@ -26,23 +26,33 @@ public class BibliotecaApp {
         StringBuffer mainMenu = new StringBuffer();
         mainMenu.append("1. List books\n");
         mainMenu.append("2. Checkout book\n");
+        mainMenu.append("3. Return book\n");
         mainMenu.append("4. Quit\n");
         return mainMenu.toString();
     }
 
-    public String checkOutBook(){
+    public String chekoutBooksMessage(){
         System.out.println("Select your book");
         System.out.println(listAvaliableBooks());
-        return bookController.checkoutBook(getOption());
+
+        return checkOutBook(getOption());
     }
 
+    public String checkOutBook(int bookId){
+
+        return bookController.checkoutBook(bookId);
+    }
+    public String returnBookMessage(){
+
+        System.out.println("Which book do you want to return?");
+        return returnBook(getOption());
+    }
     public String returnBook(int bookId){
 
         return bookController.returnBook(bookId);
     }
 
     public void startBibliotecaApp(){
-
 
         flagQuit = false;
 
@@ -64,7 +74,10 @@ public class BibliotecaApp {
                 System.out.println(listAvaliableBooks());
                  break;
             case 2:
-                System.out.println(checkOutBook());
+                System.out.println(chekoutBooksMessage());
+                break;
+            case 3:
+                System.out.println(returnBookMessage());
                 break;
             case 4:
                 setFlagQuit(true);

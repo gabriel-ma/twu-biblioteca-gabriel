@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 
+import com.twu.biblioteca.view.BibliotecaApp;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,7 +53,7 @@ public class BibliotecaAppTest {
     public void sucessfulCheckoutBookTest(){
         String expectedMessage = "Thank you! Enjoy the book";
 
-        String receivedMessage = biblioteca.checkOutBook();
+        String receivedMessage = biblioteca.checkOutBook(3);
 
         assertEquals(expectedMessage, receivedMessage);
     }
@@ -61,7 +62,7 @@ public class BibliotecaAppTest {
     public void unsucessfulCheckoutBookTest() {
         String expectedMessage = "That book is not available.";
 
-        String receivedMessage = biblioteca.checkOutBook();
+        String receivedMessage = biblioteca.checkOutBook(2);
 
         assertEquals(expectedMessage, receivedMessage);
     }
@@ -74,7 +75,7 @@ public class BibliotecaAppTest {
         detailedBooksList.append("book 1     |Author1      |1996\n");
         detailedBooksList.append("book 2     |Author2      |1948\n");
         detailedBooksList.append("book 3     |Author3      |2008\n");
-        biblioteca.returnBook(2);
+        biblioteca.returnBook(3);
         String expectedResult = biblioteca.listAvaliableBooks();
 
         assertEquals(detailedBooksList.toString(), expectedResult);

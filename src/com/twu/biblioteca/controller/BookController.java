@@ -47,11 +47,6 @@ public class BookController {
     }
 
 
-    private void generatePreExistingListofBooks(){
-        books.add(new Book(1,true, "book 1", "Author1", 1996));
-        books.add(new Book(2,false, "book 2", "Author2", 1948));
-        books.add(new Book(3,true, "book 3", "Author3", 2008));
-    }
     private String checkoutBook(Book book){
         book.setAvailable(false);
         return sucessfullCheckOutMessage();
@@ -74,4 +69,9 @@ public class BookController {
         return "That is not a valid book to return.";
     }
 
+    private void generatePreExistingListofBooks(){
+        books.add(new Book(1,true, "book 1", "Author1", 1996));
+        books.add(new Book(2,false, "book 2", "Author2", 1948));
+        books.add(new Book(3,true, "book 3", "Author3", 2008));
+    }
 }
