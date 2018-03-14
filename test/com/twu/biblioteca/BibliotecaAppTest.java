@@ -29,10 +29,10 @@ public class BibliotecaAppTest {
     public void listAvaliableBooksTest() {
         StringBuffer detailedBooksList = new StringBuffer();
         detailedBooksList.append("Title       |Author       | Publishing Year\n");
-        detailedBooksList.append("------------------------------\n");
-        detailedBooksList.append("book 1     |Author1      |1996\n");
-        //detailedBooksList.append("book 2     |Author2      |1948\n");
-        detailedBooksList.append("book 3     |Author3      |2008\n");
+        detailedBooksList.append("--------------------------------------------------\n");
+        detailedBooksList.append("Book 1     |Author 1      |1998\n");
+        //detailedBooksList.append("Book 2     |Author 2      |2009\n");
+        detailedBooksList.append("Book 3     |Author 3      |1997\n");
 
         String expectedResult = biblioteca.listAvaliableBooks();
 
@@ -41,7 +41,6 @@ public class BibliotecaAppTest {
     }
 
     @Test
-
     public void invalidOptionMessageTest() {
         String expectedMessage = "Select a valid option!";
 
@@ -71,10 +70,10 @@ public class BibliotecaAppTest {
     public void returnBookTest() {
         StringBuffer detailedBooksList = new StringBuffer();
         detailedBooksList.append("Title       |Author       | Publishing Year\n");
-        detailedBooksList.append("------------------------------\n");
-        detailedBooksList.append("book 1     |Author1      |1996\n");
-        detailedBooksList.append("book 2     |Author2      |1948\n");
-        detailedBooksList.append("book 3     |Author3      |2008\n");
+        detailedBooksList.append("--------------------------------------------------\n");
+        detailedBooksList.append("Book 1     |Author 1      |1998\n");
+        detailedBooksList.append("Book 2     |Author 2      |2009\n");
+        detailedBooksList.append("Book 3     |Author 3      |1997\n");
         biblioteca.returnBook(3);
         String expectedResult = biblioteca.listAvaliableBooks();
 
@@ -98,5 +97,19 @@ public class BibliotecaAppTest {
         String receivedMessage = biblioteca.returnBook(1);
 
         assertEquals(expectedMessage, receivedMessage);
+    }
+    @Test
+    public void listAvaliableMoviesTest() {
+        StringBuffer detailedMoviesList = new StringBuffer();
+        detailedMoviesList.append("Name       |Director       | Publishing Year      | Rating\n");
+        detailedMoviesList.append("--------------------------------------------------\n");
+        detailedMoviesList.append("Movie 1     |Director 1      |1996      |5\n");
+        //detailedBooksList.append("Movie 2     |Director 2      |1948     |9\n");
+        detailedMoviesList.append("Movie 3     |Director 3      |2008      |10\n");
+
+        String expectedResult = biblioteca.listAvaliableMovies();
+
+        assertEquals(detailedMoviesList.toString(), expectedResult);
+
     }
 }

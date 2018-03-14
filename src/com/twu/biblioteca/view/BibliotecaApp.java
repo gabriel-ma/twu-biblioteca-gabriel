@@ -1,13 +1,17 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.BookController;
+import com.twu.biblioteca.controller.MovieController;
 
 import java.util.Scanner;
 
 public class BibliotecaApp {
     static BookController bookController = new BookController();
-    static Scanner sc = new Scanner(System.in);;
+    static Scanner sc = new Scanner(System.in);
+
     private boolean flagQuit;
+    private MovieController movieControler = new MovieController();
+
     public static void main(String[] args) {
         BibliotecaApp bibliotecaApp = new BibliotecaApp();
 
@@ -19,10 +23,10 @@ public class BibliotecaApp {
     }
 
     public String listAvaliableBooks() {
-        return bookController.listAvaliableBooks();
+        return bookController.listAvailable();
     }
 
-    public String printMainMenu(){
+    public String printMainMenu() {
         StringBuffer mainMenu = new StringBuffer();
         mainMenu.append("1. List books\n");
         mainMenu.append("2. Checkout book\n");
@@ -31,48 +35,50 @@ public class BibliotecaApp {
         return mainMenu.toString();
     }
 
-    public String chekoutBooksMessage(){
+    public String chekoutBooksMessage() {
         System.out.println("Select your book");
         System.out.println(listAvaliableBooks());
 
         return checkOutBook(getOption());
     }
 
-    public String checkOutBook(int bookId){
+    public String checkOutBook(int bookId) {
 
         return bookController.checkoutBook(bookId);
     }
-    public String returnBookMessage(){
+
+    public String returnBookMessage() {
 
         System.out.println("Which book do you want to return?");
         return returnBook(getOption());
     }
-    public String returnBook(int bookId){
+
+    public String returnBook(int bookId) {
 
         return bookController.returnBook(bookId);
     }
 
-    public void startBibliotecaApp(){
+    public void startBibliotecaApp() {
 
         flagQuit = false;
 
         System.out.println(printWelcomeMessage());
-        while(!flagQuit) {
+        while (!flagQuit) {
             System.out.println(printMainMenu());
             selectCostumerOption();
         }
     }
 
-    private int getOption(){
+    private int getOption() {
         return sc.nextInt();
     }
 
-    private void selectCostumerOption(){
+    private void selectCostumerOption() {
         int costumerOption = getOption();
-        switch (costumerOption){
+        switch (costumerOption) {
             case 1:
                 System.out.println(listAvaliableBooks());
-                 break;
+                break;
             case 2:
                 System.out.println(chekoutBooksMessage());
                 break;
@@ -89,12 +95,15 @@ public class BibliotecaApp {
 
     }
 
-    public String invalidOptionMessage(){
+    public String invalidOptionMessage() {
         return "Select a valid option!";
     }
 
-    private void setFlagQuit(boolean option){
+    private void setFlagQuit(boolean option) {
         flagQuit = option;
     }
 
+    public String listAvaliableMovies() {
+        return movieControler.listAvailable();
+    }
 }
