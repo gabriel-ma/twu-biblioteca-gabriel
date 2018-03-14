@@ -20,19 +20,19 @@ public class BookController extends ItemController{
         }
         return generateHead() + availableBooks.toString();
     }
-    public String checkoutBook(int bookId){
+    public String checkout(int id){
         Book bookToCheckout = books.stream()
-                .filter(b -> b.getId() == bookId && b.isAvailable())
+                .filter(b -> b.getId() == id && b.isAvailable())
                 .findFirst().orElse(new Book(false));
 
-        return bookToCheckout.isAvailable() ?  checkoutBook(bookToCheckout) : unsucessfulCheckOutMessage();
+        return bookToCheckout.isAvailable() ?  checkout(bookToCheckout) : unsucessfulCheckOutMessage("book");
     }
     public String returnBook(int bookId){
         Book returnedBook = books.stream()
                 .filter(b -> b.getId() == bookId && !b.isAvailable())
                 .findFirst().orElse(new Book(true));
 
-        return !returnedBook.isAvailable() ?  returntBook(returnedBook) : unsucessfulReturnMessage();
+        return !returnedBook.isAvailable() ?  returntBook(returnedBook) : unsucessfulReturnMessage("book");
 
     }
 
@@ -42,27 +42,15 @@ public class BookController extends ItemController{
     }
 
 
-    private String checkoutBook(Book book){
+    private String checkout(Book book){
         book.setAvailable(false);
-        return sucessfullCheckOutMessage();
+        return sucessfullCheckOutMessage("book");
     }
     private String returntBook(Book book){
         book.setAvailable(true);
-        return sucessfullReturnMessage();
-    }
-    private String sucessfullCheckOutMessage(){
-        return "Thank you! Enjoy the book";
-    }
-    private String sucessfullReturnMessage(){
-        return "Thank you for returning the book.";
+        return sucessfullReturnMessage("book");
     }
 
-    private  String unsucessfulCheckOutMessage(){
-        return "That book is not available.";
-    }
-    private  String unsucessfulReturnMessage(){
-        return "That is not a valid book to return.";
-    }
 
     private void generatePreExistingListofBooks(){
         books.add(new Book(1,1998, true, "Book 1", "Author 1"));

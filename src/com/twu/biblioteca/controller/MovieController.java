@@ -29,9 +29,23 @@ public class MovieController extends ItemController {
         return  "Name       |Director       | Publishing Year      | Rating\n";
     }
 
+    @Override
+    public String checkout(int id) {
+        Movie movieToCheckout = movies.stream()
+                .filter(b -> b.getId() == id && b.isAvailable())
+                .findFirst().orElse(new Movie(false));
+
+        return movieToCheckout.isAvailable() ?  checkout(movieToCheckout) : unsucessfulCheckOutMessage("movie");
+
+    }
+
     private void generatePreExistingMoviesList(){
         movies.add(new Movie(1, 1996, true, "Movie 1", 5, "Director 1"));
-        movies.add(new Movie(2, 1948, false, "Movie 2", 9, "Director 2"));
+        movies.add(new Movie(2, 1948, true, "Movie 2", 9, "Director 2"));
         movies.add(new Movie(3, 2008, true, "Movie 3", 10, "Director 3"));
+    }
+    private String checkout(Movie movie){
+        movie.setAvailable(false);
+        return sucessfullCheckOutMessage("movie");
     }
 }

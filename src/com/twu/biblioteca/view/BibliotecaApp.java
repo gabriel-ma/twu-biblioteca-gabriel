@@ -42,9 +42,9 @@ public class BibliotecaApp {
         return checkOutBook(getOption());
     }
 
-    public String checkOutBook(int bookId) {
+    public String checkOutBook(int id) {
 
-        return bookController.checkoutBook(bookId);
+        return bookController.checkout(id);
     }
 
     public String returnBookMessage() {
@@ -105,5 +105,9 @@ public class BibliotecaApp {
 
     public String listAvaliableMovies() {
         return movieControler.listAvailable();
+    }
+
+    public String checkOutMovie(int i) {
+        return movieControler.checkout(i);
     }
 }

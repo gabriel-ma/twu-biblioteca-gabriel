@@ -83,7 +83,7 @@ public class BibliotecaAppTest {
 
     @Test
     public void returnBookSucesfulMessage() {
-        String expectedMessage = "Thank you for returning the book.";
+        String expectedMessage = "Thank you for returning the book";
 
         String receivedMessage = biblioteca.returnBook(2);
 
@@ -104,7 +104,28 @@ public class BibliotecaAppTest {
         detailedMoviesList.append("Name       |Director       | Publishing Year      | Rating\n");
         detailedMoviesList.append("--------------------------------------------------\n");
         detailedMoviesList.append("Movie 1     |Director 1      |1996      |5\n");
-        //detailedBooksList.append("Movie 2     |Director 2      |1948     |9\n");
+        detailedMoviesList.append("Movie 2     |Director 2      |1948      |9\n");
+        detailedMoviesList.append("Movie 3     |Director 3      |2008      |10\n");
+
+        String expectedResult = biblioteca.listAvaliableMovies();
+
+        assertEquals(detailedMoviesList.toString(), expectedResult);
+
+    }
+
+    @Test
+    public void checkOutMovieAndListNewListOfAvailableMovies() {
+        String expectedMessage = "Thank you! Enjoy the movie";
+
+        String receivedMessage = biblioteca.checkOutMovie(1);
+
+        assertEquals(expectedMessage, receivedMessage);
+
+        StringBuffer detailedMoviesList = new StringBuffer();
+        detailedMoviesList.append("Name       |Director       | Publishing Year      | Rating\n");
+        detailedMoviesList.append("--------------------------------------------------\n");
+
+        detailedMoviesList.append("Movie 2     |Director 2      |1948      |9\n");
         detailedMoviesList.append("Movie 3     |Director 3      |2008      |10\n");
 
         String expectedResult = biblioteca.listAvaliableMovies();

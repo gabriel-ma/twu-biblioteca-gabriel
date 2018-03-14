@@ -8,7 +8,9 @@ public class Movie extends Item{
         this.rating = rating;
         this.director = director;
     }
-
+    public Movie(boolean available) {
+        super(available);
+    }
     public String getDirector() {
         return director;
     }
