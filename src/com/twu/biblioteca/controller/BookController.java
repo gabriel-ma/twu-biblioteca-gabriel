@@ -43,7 +43,7 @@ public class BookController {
     }
 
     private String printColumns() {
-        return "Title       |Author        | Publishing Year\n";
+        return "Title       |Author       | Publishing Year\n";
     }
 
 
