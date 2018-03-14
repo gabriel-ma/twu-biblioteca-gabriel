@@ -133,4 +133,20 @@ public class BibliotecaAppTest {
         assertEquals(detailedMoviesList.toString(), expectedResult);
 
     }
+
+    @Test
+    public void loginAsLibrarian() {
+        StringBuffer menu = new StringBuffer();
+        menu.append("1. List books\n");
+        menu.append("2. Checkout book\n");
+        menu.append("3. Return book\n");
+        menu.append("4. List Movies\n");
+        menu.append("5. Checkout movie\n");
+        menu.append("6. Check book\n");
+        menu.append("7. Quit\n");
+
+        biblioteca.loginLibrarian();
+        String expectedResult = biblioteca.printMainMenu();
+
+        assertEquals(menu.toString(), expectedResult);    }
 }

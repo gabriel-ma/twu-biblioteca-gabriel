@@ -1,13 +1,18 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.BookController;
+import com.twu.biblioteca.controller.LibrarianController;
 import com.twu.biblioteca.controller.MovieController;
+import com.twu.biblioteca.controller.UserController;
+import com.twu.biblioteca.model.Librarian;
 
 import java.util.Scanner;
 
 public class BibliotecaApp {
     static BookController bookController = new BookController();
     static Scanner sc = new Scanner(System.in);
+
+    private UserController userController;
 
     private boolean flagQuit;
     private MovieController movieControler = new MovieController();
@@ -29,6 +34,7 @@ public class BibliotecaApp {
         mainMenu.append("3. Return book\n");
         mainMenu.append("4. List Movies\n");
         mainMenu.append("5. Checkout movie\n");
+        mainMenu.append(userOption());
         mainMenu.append("7. Quit\n");
         return mainMenu.toString();
     }
@@ -100,6 +106,7 @@ public class BibliotecaApp {
             case 5:
                 System.out.println(chekoutMoviesMessage());
                 break;
+
             case 7:
                 setFlagQuit(true);
                 break;
@@ -108,6 +115,10 @@ public class BibliotecaApp {
 
         }
 
+    }
+
+    private String userOption() {
+        return userController.menuOption();
     }
 
     public String invalidOptionMessage() {
@@ -124,5 +135,9 @@ public class BibliotecaApp {
 
     public String checkOutMovie(int i) {
         return movieControler.checkout(i);
+    }
+
+    public void loginLibrarian() {
+        userController = new LibrarianController();
     }
 }
