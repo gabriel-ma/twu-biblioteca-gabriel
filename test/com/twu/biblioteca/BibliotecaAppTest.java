@@ -107,7 +107,7 @@ public class BibliotecaAppTest {
         detailedMoviesList.append("Movie 2     |Director 2      |1948      |9\n");
         detailedMoviesList.append("Movie 3     |Director 3      |2008      |10\n");
 
-        String expectedResult = biblioteca.listAvaliableMovies();
+        String expectedResult = biblioteca.listAvailableMovies();
 
         assertEquals(detailedMoviesList.toString(), expectedResult);
 
@@ -128,7 +128,7 @@ public class BibliotecaAppTest {
         detailedMoviesList.append("Movie 2     |Director 2      |1948      |9\n");
         detailedMoviesList.append("Movie 3     |Director 3      |2008      |10\n");
 
-        String expectedResult = biblioteca.listAvaliableMovies();
+        String expectedResult = biblioteca.listAvailableMovies();
 
         assertEquals(detailedMoviesList.toString(), expectedResult);
 

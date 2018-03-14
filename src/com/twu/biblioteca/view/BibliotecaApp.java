@@ -22,24 +22,33 @@ public class BibliotecaApp {
         return "Welcome to Biblioteca";
     }
 
-    public String listAvaliableBooks() {
-        return bookController.listAvailable();
-    }
-
     public String printMainMenu() {
         StringBuffer mainMenu = new StringBuffer();
         mainMenu.append("1. List books\n");
         mainMenu.append("2. Checkout book\n");
         mainMenu.append("3. Return book\n");
-        mainMenu.append("4. Quit\n");
+        mainMenu.append("4. List Movies\n");
+        mainMenu.append("5. Checkout movie\n");
+        mainMenu.append("7. Quit\n");
         return mainMenu.toString();
     }
-
+    public String listAvaliableBooks() {
+        return bookController.listAvailable();
+    }
+    public String listAvaliableMovies() {
+        return movieControler.listAvailable();
+    }
     public String chekoutBooksMessage() {
         System.out.println("Select your book");
         System.out.println(listAvaliableBooks());
 
         return checkOutBook(getOption());
+    }
+    public String chekoutMoviesMessage() {
+        System.out.println("Select your movie");
+        System.out.println(listAvaliableMovies());
+
+        return checkOutMovie(getOption());
     }
 
     public String checkOutBook(int id) {
@@ -86,6 +95,12 @@ public class BibliotecaApp {
                 System.out.println(returnBookMessage());
                 break;
             case 4:
+                System.out.println(listAvaliableMovies());
+                break;
+            case 5:
+                System.out.println(chekoutMoviesMessage());
+                break;
+            case 7:
                 setFlagQuit(true);
                 break;
             default:
@@ -103,7 +118,7 @@ public class BibliotecaApp {
         flagQuit = option;
     }
 
-    public String listAvaliableMovies() {
+    public String listAvailableMovies() {
         return movieControler.listAvailable();
     }
 
