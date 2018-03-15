@@ -13,7 +13,7 @@ public abstract class ItemController {
     protected String sucessfullCheckOutMessage(String type){
         return "Thank you! Enjoy the " + type;
     }
-    protected String sucessfullReturnMessage(String type){
+    protected String sucessfullreturnmessage(String type){
         return "Thank you for returning the " + type;
     }
 
@@ -25,6 +25,6 @@ public abstract class ItemController {
     }
     protected abstract String printColumns();
 
-    protected abstract String checkout(int id);
+    protected abstract String checkout(int id, String user);
 
 }

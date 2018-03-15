@@ -10,4 +10,8 @@ public abstract class UserController {
     }
 
     public abstract String menuOption();
+
+    public String getUserName(){
+        return user.getName();
+    }
 }

@@ -148,5 +148,33 @@ public class BibliotecaAppTest {
         biblioteca.loginLibrarian();
         String expectedResult = biblioteca.printMainMenu();
 
-        assertEquals(menu.toString(), expectedResult);    }
+        assertEquals(menu.toString(), expectedResult);
+    }
+
+    @Test
+    public void loginAsCostumer() {
+        StringBuffer menu = new StringBuffer();
+        menu.append("1. List books\n");
+        menu.append("2. Checkout book\n");
+        menu.append("3. Return book\n");
+        menu.append("4. List Movies\n");
+        menu.append("5. Checkout movie\n");
+        menu.append("6. See information\n");
+        menu.append("7. Quit\n");
+
+        biblioteca.loginCostumer();
+        String expectedResult = biblioteca.printMainMenu();
+
+        assertEquals(menu.toString(), expectedResult);
+    }
+
+    @Test
+    public void checkWhoCheckedBookOut() {
+        String expectedUser = "gabriel";
+        biblioteca.loginCostumer();
+        biblioteca.checkOutBook(1);
+        biblioteca.loginLibrarian();
+        String receivedMessage = biblioteca.checkWhoHasBook(1);
+        assertEquals(expectedUser, receivedMessage);
+    }
 }

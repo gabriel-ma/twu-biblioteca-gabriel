@@ -1,10 +1,6 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.controller.BookController;
-import com.twu.biblioteca.controller.LibrarianController;
-import com.twu.biblioteca.controller.MovieController;
-import com.twu.biblioteca.controller.UserController;
-import com.twu.biblioteca.model.Librarian;
+import com.twu.biblioteca.controller.*;
 
 import java.util.Scanner;
 
@@ -50,7 +46,7 @@ public class BibliotecaApp {
 
         return checkOutBook(getOption());
     }
-    public String chekoutMoviesMessage() {
+    public String checkoutMoviesMessage() {
         System.out.println("Select your movie");
         System.out.println(listAvaliableMovies());
 
@@ -59,7 +55,7 @@ public class BibliotecaApp {
 
     public String checkOutBook(int id) {
 
-        return bookController.checkout(id);
+        return bookController.checkout(id, userController.getUserName());
     }
 
     public String returnBookMessage() {
@@ -72,7 +68,10 @@ public class BibliotecaApp {
 
         return bookController.returnBook(bookId);
     }
+    public String checkWhoHasBook(int id){
+        return bookController.checkWhoHasBook(id);
 
+    }
     public void startBibliotecaApp() {
 
         flagQuit = false;
@@ -104,7 +103,7 @@ public class BibliotecaApp {
                 System.out.println(listAvaliableMovies());
                 break;
             case 5:
-                System.out.println(chekoutMoviesMessage());
+                System.out.println(checkoutMoviesMessage());
                 break;
 
             case 7:
@@ -134,10 +133,16 @@ public class BibliotecaApp {
     }
 
     public String checkOutMovie(int i) {
-        return movieControler.checkout(i);
+        return movieControler.checkout(i, userController.getUserName());
     }
 
     public void loginLibrarian() {
         userController = new LibrarianController();
+    }
+
+
+    public void loginCostumer() {
+        userController = new CostumerController();
+
     }
 }

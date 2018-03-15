@@ -20,19 +20,19 @@ public class BookController extends ItemController{
         }
         return generateHead() + availableBooks.toString();
     }
-    public String checkout(int id){
+    public String checkout(int id, String user){
         Book bookToCheckout = books.stream()
                 .filter(b -> b.getId() == id && b.isAvailable())
                 .findFirst().orElse(new Book(false));
 
-        return bookToCheckout.isAvailable() ?  checkout(bookToCheckout) : unsucessfulCheckOutMessage("book");
+        return bookToCheckout.isAvailable() ?  checkout(bookToCheckout, user) : unsucessfulCheckOutMessage("book");
     }
     public String returnBook(int bookId){
         Book returnedBook = books.stream()
                 .filter(b -> b.getId() == bookId && !b.isAvailable())
                 .findFirst().orElse(new Book(true));
 
-        return !returnedBook.isAvailable() ?  returntBook(returnedBook) : unsucessfulReturnMessage("book");
+        return !returnedBook.isAvailable() ?  returnBook(returnedBook) : unsucessfulReturnMessage("book");
 
     }
 
@@ -42,13 +42,15 @@ public class BookController extends ItemController{
     }
 
 
-    private String checkout(Book book){
+    private String checkout(Book book, String user){
         book.setAvailable(false);
+        book.setUser(user);
         return sucessfullCheckOutMessage("book");
     }
-    private String returntBook(Book book){
+    private String returnBook(Book book){
         book.setAvailable(true);
-        return sucessfullReturnMessage("book");
+
+        return sucessfullreturnmessage("book");
     }
 
 
@@ -59,4 +61,12 @@ public class BookController extends ItemController{
     }
 
 
+    public String checkWhoHasBook(int id) {
+        return books.
+                stream().
+                filter(b -> b.getId() == id).
+                findFirst().
+                orElse(new Book(true, "This book doesn't exist."))
+                .getUser();
+    }
 }

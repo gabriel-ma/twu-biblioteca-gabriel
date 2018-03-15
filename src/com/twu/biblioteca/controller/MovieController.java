@@ -30,12 +30,12 @@ public class MovieController extends ItemController {
     }
 
     @Override
-    public String checkout(int id) {
+    public String checkout(int id, String user) {
         Movie movieToCheckout = movies.stream()
                 .filter(b -> b.getId() == id && b.isAvailable())
                 .findFirst().orElse(new Movie(false));
 
-        return movieToCheckout.isAvailable() ?  checkout(movieToCheckout) : unsucessfulCheckOutMessage("movie");
+        return movieToCheckout.isAvailable() ?  checkout(movieToCheckout, user) : unsucessfulCheckOutMessage("movie");
 
     }
 
@@ -44,8 +44,9 @@ public class MovieController extends ItemController {
         movies.add(new Movie(2, 1948, true, "Movie 2", 9, "Director 2"));
         movies.add(new Movie(3, 2008, true, "Movie 3", 10, "Director 3"));
     }
-    private String checkout(Movie movie){
+    private String checkout(Movie movie, String user){
         movie.setAvailable(false);
+
         return sucessfullCheckOutMessage("movie");
     }
 }

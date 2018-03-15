@@ -4,7 +4,7 @@ import com.twu.biblioteca.model.Librarian;
 
 public class LibrarianController extends UserController {
     public LibrarianController() {
-        super(new Librarian("librarian"));
+        super(new Librarian("librarian", "1234-5678", "123", "gabriel", "a@b.com", "123456788"));
     }
 
 

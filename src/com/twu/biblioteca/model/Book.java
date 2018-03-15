@@ -6,8 +6,15 @@ public class Book extends Item{
     private String  author;
 
 
-    public Book(int id, int publisinhgYear, boolean available, String title, String author) {
-        super(id, publisinhgYear, available, title);
+    public Book(boolean available, String user) {
+        super(available);
+        this.user = user;
+    }
+
+    private String user;
+
+    public Book(int id, int publishingYear, boolean available, String title, String author) {
+        super(id, publishingYear, available, title);
         this.author = author;
 
     }
@@ -22,7 +29,13 @@ public class Book extends Item{
         return author;
     }
 
+    public String getUser() {
+        return user;
+    }
 
+    public void setUser(String user) {
+        this.user = user;
+    }
     public String getDetails() {
         return String.format("%s     |%s      |%s%n", this.getTitle(), this.getAuthor(), this.getPublishingYear());
     }
