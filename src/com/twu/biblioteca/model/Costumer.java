@@ -7,6 +7,6 @@ public class Costumer extends User {
 
     @Override
     public String menuOption() {
-        return null;
+        return "6. See information\n";
     }
 }

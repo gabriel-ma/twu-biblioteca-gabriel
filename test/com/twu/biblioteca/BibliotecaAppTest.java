@@ -14,6 +14,7 @@ public class BibliotecaAppTest {
     @Before
     public void setUp() {
         biblioteca = new BibliotecaApp();
+        biblioteca.loginCostumer();
     }
 
     @Test
@@ -176,5 +177,14 @@ public class BibliotecaAppTest {
         biblioteca.loginLibrarian();
         String receivedMessage = biblioteca.checkWhoHasBook(1);
         assertEquals(expectedUser, receivedMessage);
+    }
+
+    @Test
+    public void seeCostumerInformation() {
+        String expected = "Name: gabriel, Emal: b@a.com, Phone: 123456678";
+
+        String received = biblioteca.getInformation();
+
+        assertEquals(expected, received);
     }
 }

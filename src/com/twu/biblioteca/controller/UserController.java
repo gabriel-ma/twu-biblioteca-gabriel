@@ -13,5 +13,13 @@ public abstract class UserController {
 
     public String getUserName(){
         return user.getName();
+
+    }
+    public String getType(){
+        return user.getType();
+    }
+
+    public String getInformation(){
+        return user.getInformation();
     }
 }

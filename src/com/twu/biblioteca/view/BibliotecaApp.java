@@ -79,7 +79,7 @@ public class BibliotecaApp {
         System.out.println(printWelcomeMessage());
         while (!flagQuit) {
             System.out.println(printMainMenu());
-            selectCostumerOption();
+            loginOptions();
         }
     }
 
@@ -87,7 +87,22 @@ public class BibliotecaApp {
         return sc.nextInt();
     }
 
-    private void selectCostumerOption() {
+    private void loginOptions(){
+        System.out.println("Login as:\n1. Librarian\n2. Costumer");
+        int option  = getOption();
+        if(option == 1){
+            loginLibrarian();
+            selectOption();
+        }
+        else if(option == 2){
+            loginCostumer();
+            selectOption();
+        }
+        else
+            invalidOptionMessage();
+    }
+
+    private void selectOption() {
         int costumerOption = getOption();
         switch (costumerOption) {
             case 1:
@@ -105,7 +120,12 @@ public class BibliotecaApp {
             case 5:
                 System.out.println(checkoutMoviesMessage());
                 break;
-
+            case 6:
+                if(userController.getType().equals("librarian"))
+                    checkWhoHasBook();
+                else
+                    getInformation();
+                break;
             case 7:
                 setFlagQuit(true);
                 break;
@@ -128,6 +148,13 @@ public class BibliotecaApp {
         flagQuit = option;
     }
 
+    private String checkWhoHasBook(){
+        System.out.println("Book id:");
+        return checkWhoHasBook(getOption());
+    }
+    public String getInformation(){
+        return userController.getInformation();
+    }
     public String listAvailableMovies() {
         return movieControler.listAvailable();
     }

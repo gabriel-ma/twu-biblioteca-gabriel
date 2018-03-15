@@ -37,7 +37,7 @@ public abstract class User {
     }
 
     public String getInformation(){
-        return "";
+        return String.format("Name: %s, Emal: %s, Phone: %s", name, email, phone);
     }
 
 
